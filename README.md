@@ -1,5 +1,8 @@
 # THU Learn MCP Server
 
+[![Checks](https://github.com/Illuminumm/thu-learn-mcp/actions/workflows/ci.yml/badge.svg)](https://github.com/Illuminumm/thu-learn-mcp/actions/workflows/ci.yml)
+[MIT License](LICENSE) · Node.js 24.13+ · MCP SDK v2 · stdio
+
 清华大学网络学堂的本地、只读 MCP Server。让 Codex CLI、Claude Code 等客户端按课程查询作业、公告、课件，并聚合截止时间、下载课件。非清华大学官方项目，MIT 许可。
 
 A local, read-only MCP server for Tsinghua University's Learn platform. Human-in-the-loop login, reusable local sessions, and structured course data over stdio.
@@ -200,7 +203,7 @@ DDL 窗口为闭区间 `[当前时刻 − overdue_days×24h, 当前时刻 + days
 
 `pnpm check` 覆盖：课程/作业/公告真实适配器与 Mock HTTP 合约、浏览器 Cookie 导入和跨管理器复用、认证失效/网络错误、有限重试/429/超时、DDL 与不同父进程时区、路径穿越/重名/符号链接/大小限制、私有会话存储、SDK v2 Client 发现并调用全部八个工具、生产入口未登录行为、stdout JSON-RPC 纯净度与 stdin EOF 退出。
 
-`pnpm check`、`test:protocol` 和 `test:browser` 不访问学校，不需要真实凭据，不把 Mock 注入生产入口。协议测试真正启动子进程，不只调用 handler 函数。Windows DPAPI 和 Chromium 启动/分路径 Cookie 导出在本机已经实际运行；POSIX 分支和 CI 配置需要对应系统执行后才能称为通过。
+`pnpm check`、`test:protocol` 和 `test:browser` 不访问学校，不需要真实凭据，不把 Mock 注入生产入口。协议测试真正启动子进程，不只调用 handler 函数。Windows DPAPI 和 Chromium 启动/分路径 Cookie 导出在本机已经实际运行；GitHub Actions 的 Windows/Ubuntu 检查也已通过，包括 Ubuntu 的 POSIX 会话存储与模拟浏览器检查。macOS 尚未验证，详见 [验证记录](docs/verification.md)。
 
 `pnpm verify:live` 是单独的主动验收命令，**不在 Vitest 或 CI 中自动运行**。它使用已保存的真实会话，通过 SDK Client 启动生产 Server，检查八个工具、读取当前学期课程与作业、抽查详情和公告、核对过去/未来各 7 天的 DDL，并按课程查找一份 PDF 下载。下载上限为本地配置和 8 MiB 中的较小值，文件保存在配置下载目录下的 `verification-时间戳/` 子目录，检查文件头、大小、扩展名和 SHA-256。日志仅含统计与下载文件路径，不输出课程正文或认证信息。空学期或没有合适 PDF 时会明确标记相应步骤 `skipped`；上游 warning 或错误会使验收失败，不能当作全部通过。大量课程的首次作业读取可能耗时数分钟。
 

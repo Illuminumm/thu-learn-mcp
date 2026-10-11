@@ -4,7 +4,7 @@ This project is a local, single-user MCP server. Never attach credentials, sessi
 
 ## Reporting a vulnerability
 
-Use the repository's **Security → Report a vulnerability** entry when private vulnerability reporting is enabled. Do not put exploit details, credentials or school responses in a public issue. If that entry is unavailable, open an issue requesting a private contact channel without disclosing the vulnerability itself. We do not promise a response-time SLA.
+Use [Report a vulnerability](https://github.com/Illuminumm/thu-learn-mcp/security/advisories/new) under the repository's **Security** tab. Private vulnerability reporting is enabled for this repository. Do not put exploit details, credentials or school responses in a public issue. If that entry is unavailable, open an issue requesting a private contact channel without disclosing the vulnerability itself. We do not promise a response-time SLA.
 
 Security fixes target the current main branch and latest release. There are no separately maintained older release lines yet. If credentials were exposed, remove the shared material and reauthenticate through the school's own account/session controls; deleting a Git file alone does not remove existing copies or history.
 

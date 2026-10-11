@@ -23,6 +23,8 @@
 
 开源整理后额外从 Git 暂存树导出纯源码到独立目录，再次执行 `pnpm install --frozen-lockfile` 和 `pnpm check`：格式检查、类型检查、Lint、构建及 42 项测试全部通过。主目录也重新通过模拟浏览器检查与生产依赖审计。待提交文件的本地检查未发现个人路径、真实验收样本统计或常见凭据模式；这类模式扫描不能替代内容审阅。公开版本保留了方法与结果，移除了个人课程数量和下载文件特征。
 
+首次公开提交 `5b936ef` 的 [GitHub Actions 运行记录](https://github.com/Illuminumm/thu-learn-mcp/actions/runs/38116957619) 已通过：Windows 与 Ubuntu 均完成锁文件安装、`pnpm check` 和生产依赖审计，Ubuntu 另通过实际 Chromium 的本地模拟认证检查。两套 CI 都没有学校凭据，也未运行 `verify:live`。Ubuntu 运行覆盖了 POSIX 会话文件权限分支；macOS 尚未运行。
+
 ## 自动化测试已验证的边界
 
 - SDK v2 Client 通过 stdio 启动实际 Server 子进程，完成 initialize、tools/list、全部八个 tools/call；检查 input/output schema、结构化结果、参数错误、NOT_FOUND、FILE_EXISTS。
@@ -65,7 +67,7 @@ PDF 保存在本机配置下载目录的 `verification-时间戳/` 子目录，�
 - 长期 Cookie 有效期、自然失效后的真实学校行为、不同网络/设备的风控，以及本次登录没有经历的验证码/二次认证分支。
 - 网站人工逐项对照、历史学期、所有课程字段/HTML 变体、其他文件格式/大型文件和可能使用的 CDN；一次抽样不等于覆盖全部课程数据。
 - Codex CLI / Claude Code 的真实交互会话接入；配置格式已核对官方文档，但没有修改本机客户端配置。
-- Linux/macOS 的权限分支和 GitHub Actions 执行结果；仓库提供 Ubuntu/Windows CI，尚未推送运行。
+- macOS 的权限、浏览器与运行环境；Ubuntu 已通过 CI，但 Linux 上的真人学校认证尚未验证。
 
 ## 用户验收入口
 
