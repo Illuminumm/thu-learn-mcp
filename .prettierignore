@@ -1,0 +1,14 @@
+node_modules/
+dist/
+coverage/
+.research/
+.patch-work/
+.auth/
+downloads/
+patches/
+pnpm-lock.yaml
+playwright-report/
+test-results/
+.env*
+*.session*
+*.log

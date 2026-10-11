@@ -1,0 +1,64 @@
+{
+  "name": "thu-learn-mcp",
+  "version": "0.1.0",
+  "description": "Read-only Tsinghua Learn MCP server with local interactive authentication",
+  "type": "module",
+  "private": true,
+  "license": "MIT",
+  "keywords": [
+    "mcp",
+    "tsinghua",
+    "thu-learn",
+    "courses",
+    "typescript"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Illuminumm/thu-learn-mcp.git"
+  },
+  "homepage": "https://github.com/Illuminumm/thu-learn-mcp#readme",
+  "bugs": {
+    "url": "https://github.com/Illuminumm/thu-learn-mcp/issues"
+  },
+  "engines": {
+    "node": ">=24.13.0"
+  },
+  "packageManager": "pnpm@11.17.0",
+  "bin": {
+    "thu-learn-mcp": "dist/index.js",
+    "thu-learn-auth": "dist/auth-cli.js"
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.build.json",
+    "typecheck": "tsc --noEmit",
+    "lint": "eslint .",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "test": "pnpm build && vitest run",
+    "test:protocol": "pnpm build && vitest run tests/protocol.test.ts",
+    "test:browser": "node --import tsx tests/browser-smoke.ts",
+    "verify:live": "pnpm build && node --import tsx tests/live-verify.ts",
+    "check": "pnpm format:check && pnpm typecheck && pnpm lint && pnpm test",
+    "start": "node dist/index.js",
+    "auth": "node dist/auth-cli.js"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/server": "2.3.1",
+    "cheerio": "1.2.0",
+    "playwright": "1.64.0",
+    "thu-learn-lib": "4.2.6",
+    "tough-cookie": "6.0.2",
+    "zod": "4.6.5"
+  },
+  "devDependencies": {
+    "@eslint/js": "10.0.1",
+    "@modelcontextprotocol/client": "2.3.1",
+    "@types/node": "24.19.2",
+    "eslint": "10.12.0",
+    "prettier": "3.9.10",
+    "tsx": "4.23.15",
+    "typescript": "6.0.3",
+    "typescript-eslint": "8.71.1",
+    "vitest": "5.0.3"
+  }
+}

@@ -1,0 +1,8 @@
+allowBuilds:
+  esbuild: true
+patchedDependencies:
+  thu-learn-lib@4.2.6: patches/thu-learn-lib@4.2.6.patch
+overrides:
+  thu-learn-lib>sm-crypto: 0.5.7
+minimumReleaseAgeExclude:
+  - prettier@3.9.10

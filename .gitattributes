@@ -1,0 +1,7 @@
+* text=auto eol=lf
+# Unified diff context intentionally starts with a space before upstream tabs.
+*.patch text eol=lf -whitespace
+*.png -text
+*.jpg -text
+*.pdf -text
+*.zip -text

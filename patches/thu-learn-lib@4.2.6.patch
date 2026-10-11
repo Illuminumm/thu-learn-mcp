@@ -1,0 +1,25 @@
+diff --git a/lib/index.d.mts b/lib/index.d.mts
+index 1971b37c3936a0f554238efeed0186a224e5d0b3..aefa01ce43b5a8ac05b05faf4a75edadfeb55e8d 100644
+--- a/lib/index.d.mts
++++ b/lib/index.d.mts
+@@ -9,6 +9,8 @@ type Credential = {
+ };
+ type CredentialProvider = () => Credential | Promise<Credential>;
+ type HelperConfig = {
++  /** Inject a session-aware fetch implementation (thu-learn-mcp compatibility patch). */
++  fetch?: Fetch;
+   provider?: CredentialProvider;
+   generatePreviewUrlForFirstPage?: boolean;
+ };
+diff --git a/lib/index.mjs b/lib/index.mjs
+index 32656ef9258053bdd36e1d16653fdae4d305a8c0..c6d7e0e116c2a2bf2e67b98d8678045cafd718d1 100644
+--- a/lib/index.mjs
++++ b/lib/index.mjs
+@@ -442,6 +442,7 @@ var Learn2018Helper = class {
+ 	};
+ 	/** you can provide a CookieJar and / or CredentialProvider in the configuration */
+ 	constructor(config) {
++		this.#fetch = config?.fetch ?? this.#fetch;
+ 		this.previewFirstPage = config?.generatePreviewUrlForFirstPage ?? true;
+ 		this.#provider = config?.provider;
+ 	}

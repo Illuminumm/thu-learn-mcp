@@ -1,0 +1,36 @@
+name: Bug report / 问题反馈
+description: 报告可复现的问题，请勿提供真实凭据或课程正文。
+title: '[Bug]: '
+body:
+  - type: markdown
+    attributes:
+      value: |
+        不要上传密码、Cookie、Token、会话文件、HAR、原始学校响应或个人课件。
+        安全漏洞请按 SECURITY.md 私下报告，不要在此公开细节。
+  - type: textarea
+    id: environment
+    attributes:
+      label: 环境
+      description: 操作系统、Node/pnpm 版本、项目版本或 commit、MCP 客户端及其版本。
+    validations:
+      required: true
+  - type: textarea
+    id: reproduce
+    attributes:
+      label: 复现步骤
+      description: 用 c1、a1、f1 等虚构值代替真实 ID；仅提供脱敏配置和错误 code。
+    validations:
+      required: true
+  - type: textarea
+    id: behavior
+    attributes:
+      label: 预期行为与实际行为
+    validations:
+      required: true
+  - type: checkboxes
+    id: privacy
+    attributes:
+      label: 隐私检查
+      options:
+        - label: 我已移除凭据、个人课程内容和本地个人路径。
+          required: true
